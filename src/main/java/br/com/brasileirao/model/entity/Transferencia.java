@@ -2,13 +2,9 @@ package br.com.brasileirao.model.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 
 import br.com.brasileirao.model.entity.base.EntityBase;
@@ -22,22 +18,14 @@ public class Transferencia extends EntityBase {
 	private LocalDateTime data;
 	private BigDecimal valor;
 	
-	@OneToOne
-	@JoinColumn(name="time_origem_id")
+	@ManyToOne
 	private Time timeOrigem;
 	
-	@OneToOne
-	@JoinColumn(name="jogador_destino_id")
+	@ManyToOne
 	private Time timeDestino;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="transferencia_id")
-	private List<Jogador> jogadores;
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="transferencia_id")
-	private List<Time> times;
-
+	@ManyToOne
+	private Jogador jogador;
 	
     @PrePersist
     private void prePersist() {

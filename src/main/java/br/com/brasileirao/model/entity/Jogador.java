@@ -1,12 +1,9 @@
 package br.com.brasileirao.model.entity;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 
 import br.com.brasileirao.model.entity.base.EntityBase;
@@ -22,11 +19,10 @@ public class Jogador extends EntityBase {
 	private String cpf;
     private String email;
     private String pais;
-    private String endereço;
+    private String endereco;
     
-    @OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="jogador_id")
-	private List<Time> times;
+    @OneToOne
+	private Time time;
   
     
     private boolean ativo;
@@ -38,3 +34,4 @@ public class Jogador extends EntityBase {
     }
 
 }
+
