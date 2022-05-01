@@ -26,10 +26,5 @@ public class Transferencia extends EntityBase {
 	
 	@ManyToOne
 	private Jogador jogador;
-	
-    @PrePersist
-    private void prePersist() {
-    	data = LocalDateTime.now();
-    }
 
 }
