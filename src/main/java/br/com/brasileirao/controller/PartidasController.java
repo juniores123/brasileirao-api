@@ -2,6 +2,7 @@ package br.com.brasileirao.controller;
 
 
 import br.com.brasileirao.model.entity.Partida;
+import br.com.brasileirao.requests.EventoRequest;
 import br.com.brasileirao.service.PartidaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -52,5 +53,82 @@ public class PartidasController {
     @DeleteMapping("{id}")
     public void delete(@PathVariable Integer id) {
         this.service.delete(id);
+    }
+    
+    @PutMapping("{id}/eventos/gol")
+    public ResponseEntity<?> golEvent(@PathVariable Integer id, @RequestBody EventoRequest eventoRequest) {
+        boolean eventInsertion = this.service.handleEventOnPartida(id, eventoRequest.timeId, eventoRequest.jogadorId, eventoRequest.jogadorNameEntra, "gol");
+
+        if (!eventInsertion) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(null);
+    }
+
+    @PutMapping("{id}/eventos/inicio")
+    public ResponseEntity<?> inicioEvent(@PathVariable Integer id) {
+        boolean eventInsertion = this.service.handleEventOnPartida(id, "inicio");
+
+        if (!eventInsertion) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(null);
+    }
+
+    @PutMapping("{id}/eventos/fim")
+    public ResponseEntity<?> fimEvent(@PathVariable Integer id) {
+        boolean eventInsertion = this.service.handleEventOnPartida(id, "fim");
+
+        if (!eventInsertion) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(null);
+    }
+
+    @PutMapping("{id}/eventos/advertencia")
+    public ResponseEntity<?> advertenciaEvent(@PathVariable Integer id, @RequestBody EventoRequest eventoRequest) {
+        boolean eventInsertion = this.service.handleEventOnPartida(id, eventoRequest.timeId, eventoRequest.jogadorId, eventoRequest.jogadorNameEntra, "advertencia");
+
+        if (!eventInsertion) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(null);
+    }
+
+    @PutMapping("{id}/eventos/substituicao")
+    public ResponseEntity<?> substituicaoEvent(@PathVariable Integer id, @RequestBody EventoRequest eventoRequest) {
+        boolean eventInsertion = this.service.handleEventOnPartida(id, eventoRequest.timeId, eventoRequest.jogadorId, eventoRequest.jogadorNameEntra, "substituicao");
+
+        if (!eventInsertion) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(null);
+    }
+
+    @PutMapping("{id}/eventos/acrescimo")
+    public ResponseEntity<?> acrescimoEvent(@PathVariable Integer id) {
+        boolean eventInsertion = this.service.handleEventOnPartida(id,"acrescimo");
+
+        if (!eventInsertion) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(null);
+    }
+
+    @PutMapping("{id}/eventos/intervalo")
+    public ResponseEntity<?> intervaloEvent(@PathVariable Integer id) {
+        boolean eventInsertion = this.service.handleEventOnPartida(id,"intervalo");
+
+        if (!eventInsertion) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(null);
     }
 }

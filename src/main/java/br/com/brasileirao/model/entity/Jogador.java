@@ -26,5 +26,10 @@ public class Jogador extends EntityBase {
   
     
     private boolean ativo;
+    
+    @PrePersist
+    private void prePersist() {
+        ativo = true;
+    }
 }
 

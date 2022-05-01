@@ -1,7 +1,6 @@
 package br.com.brasileirao.model.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.PrePersist;
 
 import br.com.brasileirao.model.entity.base.EntityBase;
@@ -18,5 +17,10 @@ public class Time extends EntityBase {
 	private String estado;
 	
 	private boolean ativo;
+	
+    @PrePersist
+    private void prePersist() {
+        ativo = true;
+    }
 
 }

@@ -1,8 +1,8 @@
 package br.com.brasileirao.model.entity;
 import java.time.LocalDateTime;
-import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 import br.com.brasileirao.model.entity.base.EntityBase;
 import lombok.Getter;

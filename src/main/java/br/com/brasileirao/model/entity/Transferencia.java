@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
 
 import br.com.brasileirao.model.entity.base.EntityBase;
 import lombok.Getter;
