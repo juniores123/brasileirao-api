@@ -40,26 +40,12 @@ public class PartidaService {
         this.repository.deleteById(id);
     }
 
-    public boolean createEventOnPartida(Integer id, String nameEvento) {
-        Optional<Evento> evento = this.eventoRepository.findByName(nameEvento);
+    public List<Evento> findEventosByPartidaId(Integer id) {
+        Optional<Partida> partida = this.repository.findById(id);
 
-        if (evento.isEmpty()) {
-            return false;
-        }
+        if (partida.isEmpty())
+            return null;
 
-        Optional<Partida> partidaFound = this.repository.findById(id);
-
-        if (partidaFound.isEmpty()) {
-            return false;
-        }
-
-        Partida currentPartida = partidaFound.get();
-
-        // Grab the existent eventos in partida
-        List<Evento> currentEventos = currentPartida.getEventos();
-        currentEventos.add(evento.get());
-        currentPartida.setEventos(currentEventos);
-
-        return true;
+        return this.eventoRepository.findByPartidaId(partida.get().getId());
     }
 }

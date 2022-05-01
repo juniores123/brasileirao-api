@@ -18,14 +18,5 @@ public class Time extends EntityBase {
 	private String estado;
 	
 	private boolean ativo;
-	
-	@JoinColumn(name = "time_id")
-	private Partida partidas;
-	
-	
-    @PrePersist
-    private void prePersist() {
-        ativo = true;
-    }
 
 }

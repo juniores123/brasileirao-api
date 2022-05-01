@@ -53,16 +53,4 @@ public class PartidasController {
     public void delete(@PathVariable Integer id) {
         this.service.delete(id);
     }
-
-    @PutMapping("{id}/eventos/{event}")
-    public ResponseEntity<?> insertEvent(@PathVariable Integer id, @PathVariable String event) {
-        boolean eventInsertion = this.service.createEventOnPartida(id, event);
-
-        if (!eventInsertion) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(null);
-    }
-
 }

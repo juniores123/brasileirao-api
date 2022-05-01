@@ -13,22 +13,16 @@ import lombok.Setter;
 public class Partida extends EntityBase {
 	
 	private LocalDateTime dataPartida;
-	
-	private String placar;
-	
-	@OneToOne
-	private Time timeVencedor;
-	
-	@ManyToMany
+
+	@ManyToOne
+	private Time vencedor;
+
+	@ManyToOne
 	private Time timeUm;
 
-	@ManyToMany
+	@ManyToOne
 	private Time timeDois;
 	
 	@ManyToOne
 	private Torneio torneio;
-
-	@OneToMany
-	private List<Evento> eventos;
-
 }
